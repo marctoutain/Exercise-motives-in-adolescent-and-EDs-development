@@ -96,9 +96,6 @@ estimators_classif = [
 
 df_NCV_scores = pd.DataFrame()
 
-#assert inner_cv != outer_cv => à vérifier
-# print(inner_cv)
-# print(outer_cv)
 inner_cv = KFold(n_splits = 4, shuffle=True, random_state=0)
 outer_cv = KFold(n_splits = 4, shuffle=True, random_state=1)
 
