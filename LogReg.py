@@ -64,7 +64,6 @@ variable_names_included_in_clustering = [
 X_std = df_data_standardized[variable_names_included_in_clustering].values
 assert X_std.shape==(392, 35)
 y = df_data_standardized['EAT_26_total_score'].values
-# assert y.shape == (528,)
 
 #Transform y values in 0 if under EAT-26 cut off score of 20 and in 1 if up or equal 20
 #A classification problem
@@ -85,7 +84,7 @@ X_std = X_std[included_subject_index]
 assert X_std.shape == (234,35)
 
 #######################################
-#  modeling using the best selected model: linear regression
+#  modeling using the best selected model: logistic regression
 #######################################
 
 
@@ -106,9 +105,6 @@ for train_index, test_index in outer_cv.split(X_std):
     coefs.append(np.squeeze(clf.coef_))
     y_true.append(Y_test.tolist())
     y_pred.append(clf.predict(X_test).tolist())
-
-#y_true = np.reshape(y_true, (220,))
-#y_pred = np.reshape(y_pred, (220,))
 
 temp_true=[]
 temp_pred=[]
@@ -247,7 +243,7 @@ plt.show()
 from sklearn.model_selection import StratifiedShuffleSplit
 from scipy import stats 
 # Non-parameric hypothesis test 
-# run the CV 5 fold logistic regression with permutated Y
+# run the CV 4 fold logistic regression with permutated Y
 
 n_permutations = 100
 permutation_accs = []
