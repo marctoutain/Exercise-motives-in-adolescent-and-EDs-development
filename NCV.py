@@ -58,15 +58,14 @@ variable_names_included_in_clustering = [
 X_std = df_data_standardized[variable_names_included_in_clustering].values
 assert X_std.shape==(392, 35)
 y = df_data_standardized['EAT_26_total_score'].values
-# assert y.shape == (528,)
 
 #Transform y values in 0 if under EAT-26 cut off score of 20 and in 1 if up or equal 20
 #A classification problem
 y = np.where(y >= 20, y, 0)
 y = np.where(y < 20, y, 1)
 
-print("N y==0 : ",y[np.where(y==0)].__len__()) # 379
-print("N y==1 : ",y[np.where(y==1)].__len__()) # 146
+print("N y==0 : ",y[np.where(y==0)].__len__())
+print("N y==1 : ",y[np.where(y==1)].__len__())
 
 #Downsampling - y == 0 and y == 1 samples size are imbalanced, a downsampling is needed 
 selected_index_y0 = np.random.choice(np.where(y == 0)[0], y[np.where(y==1)].__len__(), replace = False)
